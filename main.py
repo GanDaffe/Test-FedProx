@@ -29,7 +29,7 @@ def client_fn(context: Context):
 
     net = LogisticRegression(model_cfg.num_classes) 
 
-    partition_id = int(context.node_config["partition_id"])
+    partition_id = int(context.node_config["partition-id"])
     num_partitions = int(general_cfg.num_clients)
     local_epochs = general_cfg.local_epochs
     num_rounds = general_cfg.num_server_round
