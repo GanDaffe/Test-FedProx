@@ -1,0 +1,27 @@
+defaults:
+  algorithm: 'fedprox'
+  num_server_round: 100
+  mu: 0.1 
+  lr: 0.03
+  num_clients: 1000
+  straggler_fraction: 0.9
+  local_epochs: 10
+  drop_straggler: false
+  fraction_fit: 0.01
+  fraction_evaluate: 0.0
+  min_evaluate_clients: 0
+  min_available_clients: 1000
+
+dataset: 
+  path: './mnist'
+  num_unique_labels_per_partition: 2
+  num_labels: 10
+  preassigned_num_samples_per_label: 5
+  seed: 42 
+  mu: 1.0 
+  sigma: 2.0
+  val_ratio: 0.1 
+  batch_size: 10
+
+model: 
+  num_classes: 10
