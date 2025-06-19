@@ -13,7 +13,7 @@ defaults:
   min_available_clients: 1000
 
 dataset: 
-  path: './mnist'
+  path: 'mnist'
   num_unique_labels_per_partition: 2
   num_labels: 10
   preassigned_num_samples_per_label: 5
