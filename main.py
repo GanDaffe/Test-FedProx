@@ -22,12 +22,11 @@ with open("config.yaml") as f:
 
 general_cfg = cfg.defaults
 dataset_cfg = cfg.dataset
-model_cfg = cfg.model 
 
 # -------------------------- CLIENT FN ------------------------------------ 
 def client_fn(context: Context):
 
-    net = LogisticRegression(model_cfg.num_classes) 
+    net = LogisticRegression(general_cfg.num_classes) 
 
     partition_id = int(context.node_config["partition-id"])
     num_partitions = int(general_cfg.num_clients)
@@ -70,7 +69,7 @@ testloader = prepare_test_loader(
         dataset_cfg  # pylint: disable=E1101
     )
 
-ndarrays = get_weights(LogisticRegression(model_cfg.num_classes))
+ndarrays = get_weights(LogisticRegression(general_cfg.num_classes))
 parameters = ndarrays_to_parameters(ndarrays)
 
 strategy = FedAvgWithStragglerDrop(
@@ -79,9 +78,8 @@ strategy = FedAvgWithStragglerDrop(
     min_available_clients=general_cfg.min_available_clients,
     initial_parameters=parameters,
     on_fit_config_fn=get_on_fit_config(),
-    exp_name=general_cfg.exp_name,
     testloader=testloader,
-    config=model_cfg, 
+    config=general_cfg, 
     device=DEVICE
 )
 
