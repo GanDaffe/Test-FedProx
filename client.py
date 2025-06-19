@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader
 from flwr.client import NumPyClient
 from flwr.common.typing import NDArrays, Scalar
 
-from utils_general import get_weights, instantiate_model, set_weights, test, train, context_to_easydict
+from utils_general import get_weights, set_weights, test, train 
 from utils_dataset import load_data 
 
 class FlowerClient(NumPyClient):  # pylint: disable=too-many-instance-attributes

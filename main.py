@@ -123,12 +123,12 @@ testloader = prepare_test_loader(
         dataset_cfg  # pylint: disable=E1101
     )
 
-ndarrays = get_weights(LogisticRegression(general_cfg.num_classes))
+ndarrays = get_weights(LogisticRegression(model_cfg.num_classes))
 parameters = ndarrays_to_parameters(ndarrays)
 evaluate_fn = gen_evaluate_fn(
      testloader, 
      device=DEVICE, 
-     run_config=general_cfg
+     run_config=model_cfg
 )
 
 strategy = FedAvgWithStragglerDrop(
