@@ -79,7 +79,8 @@ strategy = FedAvgWithStragglerDrop(
     min_available_clients=general_cfg.min_available_clients,
     initial_parameters=parameters,
     on_fit_config_fn=get_on_fit_config(),
-    testloader=testloader
+    exp_name=general_cfg.exp_name,
+    testloader=testloader,
     config=model_cfg, 
     device=DEVICE
 )

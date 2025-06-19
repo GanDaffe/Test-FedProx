@@ -1,4 +1,5 @@
 defaults:
+  exp_name: 'fedprox-with-90%-straggler-client'
   algorithm: 'fedprox'
   num_server_round: 100
   mu: 0.1 

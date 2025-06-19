@@ -17,8 +17,9 @@ from utils_general import set_weights, test
 
 class FedAvgWithStragglerDrop(FedAvg):
     """Custom FedAvg which discards updates from stragglers."""
-    def __init__(self, *args, testloader, config, device, **kwargs):
+    def __init__(self, *args, exp_name, testloader, config, device, **kwargs):
         super().__init__(*args, **kwargs)
+        self.exp_name = exp_name
         self.testloader = testloader
         self.config = config 
         self.device = device
@@ -46,7 +47,7 @@ class FedAvgWithStragglerDrop(FedAvg):
     ) -> Optional[Tuple[float, Dict[str, Scalar]]]:
         """Evaluate global model parameters using an evaluation function."""
 
-        net = LogisticRegression(self.config.num_classes)
+        net = LogisticRegression(self.config.num_classes).to(self.device)
         set_weights(net, parameters_to_ndarrays(parameters))    
         loss, accuracy = test(net, self.testloader, self.device)
 
